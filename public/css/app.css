@@ -1,0 +1,54 @@
+body {
+  font-family: "Lato", "sans-serif";
+  -webkit-font-smoothing: antialiased;
+  color: #232323;
+}
+
+nav li:last-child a {
+  background-color: #fe5f1e;
+}
+nav li:last-child a:hover {
+  background-color: #b23301;
+}
+
+nav a {
+  transition: all 0.3s ease-in-out;
+}
+nav a:hover {
+  color: #fe5f1e;
+}
+
+.ordernow-btn {
+  background-color: #fe5f1e;
+  padding: 4px;
+  border-radius: 10px;
+  color: white;
+}
+
+.hero {
+  background-color: #f8f8f8;
+}
+
+.size {
+  background-color: #f8f8f8;
+}
+
+.add-to-cart {
+  border: 2px solid #fe5f1e;
+  padding: 4px 18px;
+  border-radius: 10px;
+  color: #fe5f1e;
+  margin-left: 10px;
+  transition: all 0.3s ease-in-out;
+}
+.add-to-cart:hover {
+  background-color: #fe5f1e;
+  color: #fff;
+}
+
+.prize-add {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}

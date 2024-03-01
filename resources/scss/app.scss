@@ -1,0 +1,56 @@
+@import './variables';
+
+body{
+    font-family: 'Lato','sans-serif';
+    -webkit-font-smoothing: antialiased;
+    color: $dark;
+}
+
+nav  li:last-child a{
+    &:hover{
+        background-color: $primary-hover;
+    }
+    background-color: $primary;
+}
+
+nav a {
+    transition: $smooth;
+    &:hover{
+        color: $primary;
+    }
+}
+
+.ordernow-btn{
+    background-color: $primary;
+    padding: 4px;
+    border-radius: 10px;
+    color: white;
+}
+
+.hero{
+    background-color: $secondary;
+}
+.size{
+    background-color: $secondary;
+}
+.add-to-cart{
+    border:  2px solid $primary;
+    padding: 4px 18px;
+    border-radius: 10px;
+    color: $primary;
+    margin-left: 10px;
+    transition: $smooth;
+   
+
+    &:hover{
+        background-color: $primary;
+        color: $pure;
+    }
+}
+
+.prize-add{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}

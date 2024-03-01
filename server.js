@@ -6,8 +6,15 @@ const expresslayout = require("express-ejs-layouts")
 const PORT = process.env.PORT || 8080
 
 
-app.set("view engine","ejs");
+
+
+app.get("/", (req, res) => {
+    res.render('home')
+})
+
+app.use(express.static("public"))
 app.use(expresslayout);
+app.set("view engine","ejs");
 app.set("views", path.join(__dirname,'/resources/views'))
 
 
