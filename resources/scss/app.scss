@@ -22,9 +22,14 @@ nav a {
 
 .ordernow-btn{
     background-color: $primary;
-    padding: 4px;
-    border-radius: 10px;
+    padding: 10px;
+    border-radius: 15px;
     color: white;
+    transition: $smooth;
+    &:hover{
+        background-color: $primary-hover;
+    }
+    min-width: 5rem;
 }
 
 .hero{
@@ -53,4 +58,30 @@ nav a {
     align-items: center;
     justify-content: space-between;
     width: 100%;
+}
+
+.menu{
+    padding: 30px 0;
+}
+
+.primary{
+    &:hover{
+        color: $primary-hover;
+    }
+   color: $primary;
+}
+
+.cart{
+padding: 30px 0;
+    background-color: $secondary;
+    min-height: 87vh;
+}
+
+.total h3{
+    color: $primary;
+}
+
+.login{
+    background-color: $secondary;
+    min-height: 87vh;
 }

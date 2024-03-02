@@ -20,9 +20,14 @@ nav a:hover {
 
 .ordernow-btn {
   background-color: #fe5f1e;
-  padding: 4px;
-  border-radius: 10px;
+  padding: 10px;
+  border-radius: 15px;
   color: white;
+  transition: all 0.3s ease-in-out;
+  min-width: 5rem;
+}
+.ordernow-btn:hover {
+  background-color: #b23301;
 }
 
 .hero {
@@ -51,4 +56,30 @@ nav a:hover {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+}
+
+.menu {
+  padding: 30px 0;
+}
+
+.primary {
+  color: #fe5f1e;
+}
+.primary:hover {
+  color: #b23301;
+}
+
+.cart {
+  padding: 30px 0;
+  background-color: #f8f8f8;
+  min-height: 87vh;
+}
+
+.total h3 {
+  color: #fe5f1e;
+}
+
+.login {
+  background-color: #f8f8f8;
+  min-height: 87vh;
 }
