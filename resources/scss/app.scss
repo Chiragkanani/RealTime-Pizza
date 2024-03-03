@@ -1,5 +1,6 @@
 @import './variables';
-
+@import '~noty/src/noty.scss';  
+@import '~noty/src/themes/mint.scss';  
 body{
     font-family: 'Lato','sans-serif';
     -webkit-font-smoothing: antialiased;
@@ -51,6 +52,9 @@ nav a {
         background-color: $primary;
         color: $pure;
     }
+    &:focus{
+        outline: none;
+    }
 }
 
 .prize-add{
@@ -84,4 +88,15 @@ padding: 30px 0;
 .login{
     background-color: $secondary;
     min-height: 87vh;
+}
+
+.noty_themes_mint{
+    border-radius: 50px !important;
+    padding-left: 8px !important;
+}
+
+input{
+    &:focus{
+        outline-color: $primary;
+    }
 }

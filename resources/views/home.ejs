@@ -22,97 +22,21 @@
             <h1 class="text-xl font-bold mb-8"> All Pizzas</h1>
             <div class="grid grid-cols-4  col-gap-12 row-gap-16">
 
-
+                <% data.forEach(element => { %>
                 <div class="flex flex-col items-center w-64">
-                    <img src="/img/piz1.jpg" class="w-56 mb-4" alt="">
+                    <img src="/img/<%= element.image %>" class="w-56 mb-4" alt="">
                     <div class="flex flex-col items-center w-4/5">
-                        <h3 class="mb-4 text-lg">Margerita</h3>
-                        <p class="size py-1 px-4 rounded-full uppercase text-xs mb-4">small</p>
+                        <h3 class="mb-4 text-lg"><%= element.name %></h3>
+                        <p class="size py-1 px-4 rounded-full uppercase text-xs mb-4"><%= element.size %></p>
                         <div class="prize-add  ">
-                            <p class="text-lg font-bold mx-2">₹250</p>
-                            <button class="add-to-cart">+&nbsp;&nbsp;Add</button>
+                            <p class="text-lg font-bold mx-2">₹ <%= element.price %>
+                            </p>
+                            <button data-pizza = "<%= JSON.stringify(element) %>" class="add-to-cart addcart">+&nbsp;&nbsp;Add</button>
                         </div>
                     </div>
                 </div>
-
-            <div class="flex flex-col items-center w-64">
-                <img src="/img/piz1.jpg" class="w-56 mb-4" alt="">
-                <div class="flex flex-col items-center w-4/5">
-                    <h3 class="mb-4 text-lg">Margerita</h3>
-                    <p class="size py-1 px-4 rounded-full uppercase text-xs mb-4">small</p>
-                    <div class="prize-add  ">
-                        <p class="text-lg font-bold mx-2">₹250</p>
-                        <button class="add-to-cart">+&nbsp;&nbsp;Add</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex flex-col items-center w-64">
-                <img src="/img/piz1.jpg" class="w-56 mb-4" alt="">
-                <div class="flex flex-col items-center w-4/5">
-                    <h3 class="mb-4 text-lg">Margerita</h3>
-                    <p class="size py-1 px-4 rounded-full uppercase text-xs mb-4">small</p>
-                    <div class="prize-add  ">
-                        <p class="text-lg font-bold mx-2">₹250</p>
-                        <button class="add-to-cart">+&nbsp;&nbsp;Add</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex flex-col items-center w-64">
-                <img src="/img/piz1.jpg" class="w-56 mb-4" alt="">
-                <div class="flex flex-col items-center w-4/5">
-                    <h3 class="mb-4 text-lg">Margerita</h3>
-                    <p class="size py-1 px-4 rounded-full uppercase text-xs mb-4">small</p>
-                    <div class="prize-add  ">
-                        <p class="text-lg font-bold mx-2">₹250</p>
-                        <button class="add-to-cart">+&nbsp;&nbsp;Add</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex flex-col items-center w-64">
-                <img src="/img/piz1.jpg" class="w-56 mb-4" alt="">
-                <div class="flex flex-col items-center w-4/5">
-                    <h3 class="mb-4 text-lg">Margerita</h3>
-                    <p class="size py-1 px-4 rounded-full uppercase text-xs mb-4">small</p>
-                    <div class="prize-add  ">
-                        <p class="text-lg font-bold mx-2">₹250</p>
-                        <button class="add-to-cart">+&nbsp;&nbsp;Add</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex flex-col items-center w-64">
-                <img src="/img/piz1.jpg" class="w-56 mb-4" alt="">
-                <div class="flex flex-col items-center w-4/5">
-                    <h3 class="mb-4 text-lg">Margerita</h3>
-                    <p class="size py-1 px-4 rounded-full uppercase text-xs mb-4">small</p>
-                    <div class="prize-add  ">
-                        <p class="text-lg font-bold mx-2">₹250</p>
-                        <button class="add-to-cart">+&nbsp;&nbsp;Add</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex flex-col items-center w-64">
-                <img src="/img/piz1.jpg" class="w-56 mb-4" alt="">
-                <div class="flex flex-col items-center w-4/5">
-                    <h3 class="mb-4 text-lg">Margerita</h3>
-                    <p class="size py-1 px-4 rounded-full uppercase text-xs mb-4">small</p>
-                    <div class="prize-add  ">
-                        <p class="text-lg font-bold mx-2">₹250</p>
-                        <button class="add-to-cart">+&nbsp;&nbsp;Add</button>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-
-
+                <% }) %>
+               
 
             </div>
         </div>
