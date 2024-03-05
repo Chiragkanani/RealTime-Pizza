@@ -10,7 +10,7 @@ const cartController = () => {
             }else{
                 empty = true
             }
-            console.log(cart)
+            
             res.render('customer/cart', { cartData: cart, empty })
             
         },

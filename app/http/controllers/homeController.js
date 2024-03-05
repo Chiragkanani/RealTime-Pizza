@@ -7,6 +7,7 @@ const homeController = ()=>{
             let data = await menu.find()
             res.render('home',{data:data})
         }
+       
     }
 }
 
