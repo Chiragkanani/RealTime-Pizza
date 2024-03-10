@@ -15,8 +15,7 @@ const cartController = () => {
             
         },
         updateCart(req,res){
-           
-
+        
             if (!req.session.cart) {
                 req.session.cart = {
                     items: {

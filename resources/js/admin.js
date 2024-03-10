@@ -1,52 +1,21 @@
-import axios  from "axios";
-import Noty from "noty";
-import moment from 'moment';
+// import moment from 'moment';
+// import axios from "axios";
 
-const addcart = document.querySelectorAll(".addcart")
-const totalQty = document.querySelector("#totalQty")
-function addToCart (e){
-        let pizza =JSON.parse( e.target.dataset.pizza);
-        axios.post("/update-cart",pizza).then((res)=>{
-        totalQty.innerText = res.data.totalQty;
-            new Noty({
-                type:'success',
-                text: "Item Added To cart",
-                timeout:1000
-            }).show();
-        }).catch(err=>{
-            new Noty({
-                type: 'error',
-                text: "Something went wrong",
-                timeout: 1000
-            }).show();
-        })
-}
-
-addcart.forEach(Element=>{
-    Element.addEventListener("click",addToCart)
-});
-
-
-const success_alert = document.querySelector("#success-alert") 
-setTimeout(()=>{
-    success_alert.style.display = "none" 
-},3000)
-
-function initAdmin() {
+function initAdmin (){
 
     const ordertablebody = document.querySelector("#ordertablebody");
     let orders = [];
     let markup;
 
-    axios.get("/admin/orders", {
-        headers: {
-            "X-Requested-With": "XMLHttpRequest"
+    axios.get("/admin/orders",{
+        headers:{
+            "X-Requested-With":"XMLHttpRequest"
         }
-    }).then(res => {
+    }).then(res=>{
         orders = res.data;
         markup = generateMarkup(orders);
         ordertablebody.innerHTML = markup
-    }).catch(err => {
+    }).catch(err=>{
         console.log(err)
     })
 
@@ -101,4 +70,5 @@ function initAdmin() {
 
 }
 
-initAdmin()
+
+module.exports= initAdmin

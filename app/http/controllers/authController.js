@@ -26,8 +26,11 @@ const authController = () => {
                         req.flash('error', err)
                         return next(err)   
                     }
-
-                    return res.redirect("/")
+                    if (req.user.role === 'customer') {
+                        return res.redirect("/customer/orders")
+                    }else if (req.user.role === 'admin') {
+                        return res.redirect("/admin/orders")
+                    }
                 })
             })(req,res,next)
 

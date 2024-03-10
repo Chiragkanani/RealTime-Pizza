@@ -1,0 +1,28 @@
+
+
+<section class="myorders">
+    <div class="container mx-auto pt-12">
+        <h1 class="font-bold text-lg text-left">All Orders</h1>
+        <% if (messages.success) { %>
+        <div id="success-alert" class="flex items-center bg-green-500 font-bold text-white test-sm px-4 px-3 " role="alert">
+            <p>Order Placed Successfully</p>
+        </div>  
+        <% } %>
+        <table class="mx-auto w-full text-left mt-6">
+            <thead>
+                <tr>
+                    <th class="px-4 py-2">Orders</th>
+                    <th class="px-4 py-2">Customer</th>
+                    <th class="px-4 py-2">Address</th>
+                    <th class="px-4 py-2">Status</th>
+                    <th class="px-4 py-2">Phone</th>
+                    <th class="px-4 py-2">Placed At</th>
+                </tr>
+            </thead>
+            <tbody id="ordertablebody">
+               
+
+            </tbody>
+        </table>
+    </div>
+</section>
