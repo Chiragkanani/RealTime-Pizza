@@ -27,10 +27,13 @@ addcart.forEach(Element=>{
 });
 
 
-const success_alert = document.querySelector("#success-alert") 
-setTimeout(()=>{
-    success_alert.style.display = "none" 
-},3000)
+const success_alert = document.querySelector("#success-alert")?document.querySelector("#success-alert"):false;
+if (success_alert) {
+    setTimeout(() => {
+        success_alert.style.display = "none"
+    }, 3000)
+} 
+
 
 function initAdmin() {
 
@@ -99,8 +102,10 @@ function initAdmin() {
     }
 
 }
+if (location.pathname === '/admin/orders') {
+    initAdmin() 
+}
 
-initAdmin()
 
 let status_lines = document.querySelectorAll(".status_line")
 let order = document.querySelector("#hiddeninput")?document.querySelector("#hiddeninput").value :null;

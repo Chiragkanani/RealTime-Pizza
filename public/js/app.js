@@ -45,10 +45,12 @@ function addToCart(e) {
 addcart.forEach(function (Element) {
   Element.addEventListener("click", addToCart);
 });
-var success_alert = document.querySelector("#success-alert");
-setTimeout(function () {
-  success_alert.style.display = "none";
-}, 3000);
+var success_alert = document.querySelector("#success-alert") ? document.querySelector("#success-alert") : false;
+if (success_alert) {
+  setTimeout(function () {
+    success_alert.style.display = "none";
+  }, 3000);
+}
 function initAdmin() {
   var ordertablebody = document.querySelector("#ordertablebody");
   var orders = [];
@@ -77,7 +79,9 @@ function initAdmin() {
     return string;
   }
 }
-initAdmin();
+if (location.pathname === '/admin/orders') {
+  initAdmin();
+}
 var status_lines = document.querySelectorAll(".status_line");
 var order = document.querySelector("#hiddeninput") ? document.querySelector("#hiddeninput").value : null;
 order = JSON.parse(order);
