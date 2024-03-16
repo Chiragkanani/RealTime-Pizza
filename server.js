@@ -5,6 +5,7 @@ const path = require("path")
 const expresslayout = require("express-ejs-layouts")
 const PORT = process.env.PORT || 8080
 
+const emitter = require('events');
 const session = require("express-session")
 const flash = require('express-flash')
 const MongoDbStore = require("connect-mongo");
@@ -18,6 +19,9 @@ connection.once ('open',()=>{
         console.log("Database connected...")
 })
 
+//event emitter
+const eventEmitter = new emitter()
+app.set('eventEmitter',eventEmitter);
 
 
 
@@ -65,6 +69,25 @@ require("./routes/web")(app)
 
 
 
-app.listen(PORT,()=>{
-    console.log("App Running on port ",PORT)
+const server = app.listen(PORT, () => {
+                console.log("App Running on port ", PORT)
+            })
+
+
+const io = require('socket.io')(server);
+
+io.on("connection",(socket)=>{
+    // console.log(socket.id)
+    socket.on('join',(orderId)=>{
+        // console.log(orderId)
+        socket.join(orderId)
+    })
+})
+
+eventEmitter.on("orderUpdated",(data)=>{
+    io.to(`order_${data.id}`).emit('orderUpdated',data)
+})
+
+eventEmitter.on('orderarrived',()=>{
+    io.to('admin').emit("orderArrived");
 })

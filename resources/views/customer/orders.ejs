@@ -19,7 +19,7 @@
                 <% if (orders.length) { %>
                 <% orders.forEach(element=> { %>
                     <tr>
-                        <td class="px-4 py-2"> <a href="/" class="primary">
+                        <td class="px-4 py-2"> <a href="/customer/orders/<%= element._id %>" class="primary">
                                 <%= element._id %>
                             </a> </td>
                         <td class="px-4 py-2">

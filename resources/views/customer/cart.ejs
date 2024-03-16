@@ -58,6 +58,7 @@
 
             <div class="mb-4">
                 <form action="/orders" method="post" class="total flex  flex-col items-end gap-y-3">
+                    <input type="hidden" id="user" value="<%= user?user:'' %>">
                     <% if (messages.error) { %>
                         <span class="text-red-500 py-4">
                             <%= messages.error %>

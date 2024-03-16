@@ -14,6 +14,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var noty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(noty__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_1__);
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(obj, key, value) { key = _toPropertyKey(key); if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : String(i); }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
@@ -60,7 +66,7 @@ function initAdmin() {
   });
   function generateMarkup(orders) {
     return orders.map(function (element) {
-      return " <tr>\n                        <td class=\"px-4 py-2\"> <a href=\"/\" class=\"primary\">\n                           <p> ".concat(element._id, "</p>\n                           <div>").concat(renderItems(element.items), "</div>\n                                \n                           \n                            </a> </td>\n                        <td class=\"px-4 py-2\">\n                            ").concat(element.customer_id.name, "\n                        </td>\n                        <td class=\"px-4 py-2\">\n                            ").concat(element.address, "\n                        </td>\n                        <td class=\"px-4 py-2\">\n                        <form action=\"admin/orders/status\" method=\"post\">\n                        <input type=\"hidden\" name=\"order_id\" value=\"").concat(element._id, "\">\n                            <select name=\"status\" id=\"\" onchange=\"this.form.submit()\">\n                              \n                        <option value=\"confirmed\" ").concat(element.status == "confirmed" ? 'selected' : '', "  >Confirmed</option>\n                         <option value=\"order_placed\" ").concat(element.status == "order_placed" ? 'selected' : '', "  >Order Placed</option>\n                                <option value=\"prepared\" ").concat(element.status == "prepared" ? 'selected' : '', "  >Prepared</option>\n                                <option value=\"deliverd\" ").concat(element.status == "deliverd" ? 'selected' : '', "  >Deliverd</option>\n                                <option value=\"completed\" ").concat(element.status == "completed" ? 'selected' : '', "  >Completed</option>\n                            </select>\n                            </form>\n                        </td>\n                        \n                        <td class=\"px-4 py-2\">\n                            ").concat(element.phone, "\n                        </td>\n                        <td class=\"px-4 py-2\">\n                            ").concat(moment__WEBPACK_IMPORTED_MODULE_1___default()(element.createdAt).format('hh:mm A'), "\n                        </td>\n                    </tr>");
+      return " <tr>\n                        <td class=\"px-4 py-2\"> <a href=\"/\" class=\"primary\">\n                           <p> ".concat(element._id, "</p>\n                           <div>").concat(renderItems(element.items), "</div>\n                                \n                           \n                            </a> </td>\n                        <td class=\"px-4 py-2\">\n                            ").concat(element.customer_id.name, "\n                        </td>\n                        <td class=\"px-4 py-2\">\n                            ").concat(element.address, "\n                        </td>\n                        <td class=\"px-4 py-2\">\n                        <form action=\"/admin/orders/status\" method=\"post\">\n                        <input type=\"hidden\" name=\"order_id\" value=\"").concat(element._id, "\">\n                            <select name=\"status\" id=\"\" onchange=\"this.form.submit()\">\n                        <option value=\"confirmed\" ").concat(element.status == "confirmed" ? 'selected' : '', "  >Confirmed</option>\n                         <option value=\"order_placed\" ").concat(element.status == "order_placed" ? 'selected' : '', "  >Order Placed</option>\n                                <option value=\"prepared\" ").concat(element.status == "prepared" ? 'selected' : '', "  >Prepared</option>\n                                <option value=\"deliverd\" ").concat(element.status == "deliverd" ? 'selected' : '', "  >Deliverd</option>\n                                <option value=\"completed\" ").concat(element.status == "completed" ? 'selected' : '', "  >Completed</option>\n                            </select>\n                            </form>\n                        </td>\n                        \n                        <td class=\"px-4 py-2\">\n                            ").concat(element.phone, "\n                        </td>\n                        <td class=\"px-4 py-2\">\n                            ").concat(moment__WEBPACK_IMPORTED_MODULE_1___default()(element.createdAt).format('hh:mm A'), "\n                        </td>\n                    </tr>");
     }).join('');
   }
   function renderItems(items) {
@@ -72,6 +78,48 @@ function initAdmin() {
   }
 }
 initAdmin();
+var status_lines = document.querySelectorAll(".status_line");
+var order = document.querySelector("#hiddeninput") ? document.querySelector("#hiddeninput").value : null;
+order = JSON.parse(order);
+function updateStatus(order) {
+  var stepcompleted = true;
+  status_lines.forEach(function (item) {
+    if (item.classList.contains("step-completed")) {
+      item.classList.remove("step-completed");
+    }
+    if (item.classList.contains("current")) {
+      item.classList.remove("current");
+    }
+  });
+  status_lines.forEach(function (item) {
+    if (stepcompleted) {
+      item.classList.add('step-completed');
+    }
+    if (order.status === item.dataset.status) {
+      stepcompleted = false;
+      item.classList.add("current");
+    }
+  });
+}
+updateStatus(order);
+var socket = io();
+if (order) {
+  socket.emit('join', "order_".concat(order._id));
+}
+socket.on("orderUpdated", function (data) {
+  var updatedOrder = _objectSpread({}, order);
+  updatedOrder.updatedAt = moment__WEBPACK_IMPORTED_MODULE_1___default()().format();
+  updatedOrder.status = data.status;
+  // console.log(data)
+  updateStatus(updatedOrder);
+});
+if (location.pathname === '/admin/orders') {
+  socket.emit('join', 'admin');
+}
+socket.on("orderArrived", function () {
+  console.log("order updated");
+  initAdmin();
+});
 
 /***/ }),
 

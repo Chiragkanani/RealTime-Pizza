@@ -67,10 +67,9 @@ function initAdmin() {
                             ${element.address}
                         </td>
                         <td class="px-4 py-2">
-                        <form action="admin/orders/status" method="post">
+                        <form action="/admin/orders/status" method="post">
                         <input type="hidden" name="order_id" value="${element._id}">
                             <select name="status" id="" onchange="this.form.submit()">
-                              
                         <option value="confirmed" ${element.status == "confirmed" ? 'selected' : ''}  >Confirmed</option>
                          <option value="order_placed" ${element.status == "order_placed" ? 'selected' : ''}  >Order Placed</option>
                                 <option value="prepared" ${element.status == "prepared" ? 'selected' : ''}  >Prepared</option>
@@ -102,3 +101,58 @@ function initAdmin() {
 }
 
 initAdmin()
+
+let status_lines = document.querySelectorAll(".status_line")
+let order = document.querySelector("#hiddeninput")?document.querySelector("#hiddeninput").value :null;
+
+order = JSON.parse(order)
+
+
+function updateStatus(order){
+    let stepcompleted = true;
+
+    status_lines.forEach((item)=>{
+        if (item.classList.contains("step-completed")) {
+            item.classList.remove("step-completed")
+        }
+        if (item.classList.contains("current")) {
+            item.classList.remove("current")
+        }
+    })
+
+    status_lines.forEach((item)=>{
+        if (stepcompleted) {
+            item.classList.add('step-completed')
+        }
+        if (order.status === item.dataset.status) {
+            stepcompleted = false;
+        item.classList.add("current")
+       } 
+    })
+}
+
+updateStatus(order)
+
+
+const socket = io();
+if (order) {
+    socket.emit('join',`order_${order._id}`)
+}
+
+socket.on("orderUpdated",(data)=>{
+    const updatedOrder = {...order}
+    updatedOrder.updatedAt = moment().format()
+    updatedOrder.status = data.status;
+    // console.log(data)
+    updateStatus(updatedOrder);
+
+})
+
+if (location.pathname === '/admin/orders') {
+    socket.emit('join', 'admin')
+}
+
+socket.on("orderArrived",()=>{
+    console.log("order updated");
+    initAdmin()
+})
